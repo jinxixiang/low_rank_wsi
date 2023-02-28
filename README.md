@@ -7,3 +7,11 @@ We explore the low-rank property of whole slide images to develop a new multiple
 2. We improve the vanilla transformer by adding a learnable low-rank matrix as a surrogate to implement higher-order interaction.
 
 The code is coming soon...
+
+
+@inproceedings{xiangexplore,
+  title={Exploring Low-Rank Property in Multiple Instance Learning for Whole Slide Image Classification},
+  author={Xiang, Jinxi and Wang, Xiyue and Zhang, Jun and Yang, Sen and Han, Xiao and Yang, Wei},
+  booktitle={International Conference on Learning Representations}
+  year={2023}
+}
