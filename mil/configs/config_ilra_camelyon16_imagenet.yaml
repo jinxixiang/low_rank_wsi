@@ -1,0 +1,40 @@
+General:
+    epochs: &epochs 100
+    seed: 123456
+
+Data:
+    dataframe: "./splits/camelyon16_train_10fold.csv"
+    test_df: "./splits/camelyon16_test.csv"
+    feat_dir: "/your/dir/to/wsi_feature"
+    batch_size: 1
+    num_workers: 4
+    label_dict: {"normal":0, "tumor":1}
+
+Model:
+    name: "models.ILRA"
+    params:
+        num_layers: 2
+        feat_dim: 1024
+        n_classes: 2
+        hidden_feat: 256
+        num_heads: 8
+        topk: 1
+        ln: true
+
+
+Optimizer:
+    optimizer:
+        name: Adam
+        params:
+            lr: 0.0001
+            amsgrad: False
+    lr_scheduler:
+        name: CosineAnnealingLR
+        params:
+            T_max: *epochs
+            last_epoch: -1
+
+Loss:
+    name: "CrossEntropyLoss"
+    params:
+        label_smoothing: 0.0
