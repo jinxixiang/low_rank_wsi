@@ -13,7 +13,7 @@ We explore the low-rank property of whole slide images to develop a new multiple
 
 ## Requirements
 
-use the 'environment.yaml'.
+use the _environment.yaml_ with conda.
 
 ## Structure
 
@@ -41,6 +41,9 @@ mil/
     └──wsi_dataset.py/  # WSI dataset
 ```
 
+### Step 1
 Prepare your WSI feature with [CLAM](https://github.com/mahmoodlab/CLAM) and change the 'Data.feat_dir' in yaml file. 
 To run this example code, you can download the CAMELYON16 features using ImageNet pre-trained Resnet50 from this [link](https://drive.google.com/file/d/1fJ_weyjPcpLEEVpQPwjFnZCWy_47VcRY/view?usp=sharing).
 
+### Step 2
+change _line 26_ in __train_mil.py__ to run different experiments.
