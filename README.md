@@ -1,15 +1,12 @@
-# Exploring Low-Rank Property in Multiple Instance Learning for Whole Slide Image Classification (_ICLR 2023 poster_)  [pdf](https://openreview.net/pdf?id=01KmhBsEPFO)
+# Exploring Low-Rank Property in Multiple Instance Learning for Whole Slide Image Classification (_ICLR 2023_)  [pdf](https://openreview.net/pdf?id=01KmhBsEPFO)
 
-Author: Jinxi Xiang, Xiyue Wang, Jun Zhang, Sen Yang, Xiao Han, Wei Yang. 
+Authors: Jinxi Xiang, Xiyue Wang, Jun Zhang, Sen Yang, Xiao Han and Wei Yang. 
 
-Affiliation: Tencent AI Lab.
+In this study, we investigate the low-rank property of whole slide images to establish a novel multiple-instance learning paradigm. Specifically, we enhance performance through a two-stage process:
 
+1. We introduce a low-rank contrastive learning approach designed to generate pathology-specific visual representations.
 
-We explore the low-rank property of whole slide images to develop a new multiple-instance learning paradigm. In concrete, we improve the performance in two stages:
-
-1. We propose low-rank contrastive learning for pathology-specific visual representation.
-
-2. We improve the vanilla transformer by adding a learnable low-rank matrix as a surrogate to implement higher-order interaction.
+2. We augment the standard transformer model by incorporating a learnable low-rank matrix, which serves as a surrogate to facilitate higher-order interactions.
 
 ## Requirements
 
