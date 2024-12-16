@@ -29,7 +29,7 @@ if __name__ == "__main__":
         print(f"{key.ljust(30)}: {value}")
 
     # run in ddp mode if num_gpus > 1
-    num_gpus = 1
+    num_gpus = torch.cuda.device_count()
     dist = num_gpus > 1
 
     # create datamodule
