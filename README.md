@@ -23,24 +23,24 @@ The folder structure is as follows:
 
 
 ```python
-mil/
-    └──configs/    # create yaml file that contains dataloader, model, etc.
-        ├── config_abmil_camelyon16_imagenet.yaml
-        ├── config_clam_camelyon16_imagenet.yaml
-        └── ...
-    └──models/  # definition of MIL models
-        ├── abmil.py
-        ├── clam.py
-        ├── ilra.py   # our proposed model
-        └── ...
-    └──splits/  # training ans test data split
-        ├── camelyon16_test.csv
-        ├── camelyon16_train_10fold.csv
-        └── ...
-    └──topk/ # dependency of CLAM
-        └── ...
-    └──train_mil.py/   # main function of training and test
-    └──wsi_dataset.py/  # WSI dataset
+
+configs/    # create yaml file that contains dataloader, model, etc.
+    ├── config_abmil_camelyon16_imagenet.yaml
+    ├── config_clam_camelyon16_imagenet.yaml
+    └── ...
+models/  # definition of MIL models
+    ├── abmil.py
+    ├── clam.py
+    ├── ilra.py   # our proposed model
+    └── ...
+splits/  # training ans test data split
+    ├── camelyon16_test.csv
+    ├── camelyon16_train_10fold.csv
+    └── ...
+topk/ # dependency of CLAM
+    └── ...
+train_mil.py/   # main function of training and test
+wsi_dataset.py/  # WSI dataset
 ```
 
 ### Step 1
