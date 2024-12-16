@@ -49,3 +49,6 @@ To run this example code, you can download the CAMELYON16 features using ImageNe
 
 ### Step 2
 change _line 26_ in __train_mil.py__ to run different experiments.
+```python
+fname = "config_ilra_camelyon16_imagenet"
+```
