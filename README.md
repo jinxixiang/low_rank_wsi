@@ -10,8 +10,13 @@ In this study, we investigate the low-rank property of whole slide images to est
 
 ## Requirements
 
-use the _environment.yaml_ with conda.
-
+Create a new enviroment with anaconda.
+```shell
+conda create -n ilra python=3.10 -y --no-default-packages
+conda activate ilra
+pip install --upgrade pip
+pip install -r requirements.txt
+```
 ## Structure
 
 The folder structure is as follows:
