@@ -28,8 +28,8 @@ if __name__ == "__main__":
     for key, value in config_yaml.items():
         print(f"{key.ljust(30)}: {value}")
 
-    # run in ddp mode if device > 1
-    num_gpus = torch.cuda.device_count()
+    # run in ddp mode if num_gpus > 1
+    num_gpus = 1
     dist = num_gpus > 1
 
     # create datamodule
@@ -61,4 +61,5 @@ if __name__ == "__main__":
     trainer.fit(model, datamodule=dm, ckpt_path=resume_path)
 
     # test
-    trainer.test(model, datamodule=dm, ckpt_path="last")
+    wts = trainer.checkpoint_callback.last_model_path
+    trainer.test(model, datamodule=dm, ckpt_path=wts)

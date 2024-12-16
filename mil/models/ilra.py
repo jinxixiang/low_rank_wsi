@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import math
 from .model_utils import initialize_weights
 
 """
@@ -85,9 +84,9 @@ class NLP(nn.Module):
     than simple average pooling, which may result in degraded performance.
     """
 
-    def __init__(self, dim, num_heads, num_seeds, ln=False):
+    def __init__(self, dim, num_heads, ln=False):
         super(NLP, self).__init__()
-        self.S = nn.Parameter(torch.Tensor(1, num_seeds, dim))
+        self.S = nn.Parameter(torch.Tensor(1, 1, dim))
         nn.init.xavier_uniform_(self.S)
         self.mha = MultiHeadAttention(dim, dim, dim, num_heads, ln=ln)
 
@@ -98,7 +97,15 @@ class NLP(nn.Module):
 
 
 class ILRA(nn.Module):
-    def __init__(self, num_layers=2, feat_dim=768, n_classes=2, hidden_feat=256, num_heads=8, topk=1, ln=False):
+    def __init__(
+            self, 
+            num_layers=2, 
+            feat_dim=768, 
+            n_classes=2, 
+            hidden_feat=256, 
+            num_heads=8, 
+            topk=2, # This is the rank of latent matrix; tune this parameter for your applications!
+            ln=False):
         super().__init__()
         # stack multiple GAB block
         gab_blocks = []
@@ -113,13 +120,12 @@ class ILRA(nn.Module):
         self.gab_blocks = nn.ModuleList(gab_blocks)
 
         # non-local pooling for classification
-        self.pooling = NLP(dim=hidden_feat, num_heads=num_heads, num_seeds=topk, ln=ln)
+        self.pooling = NLP(dim=hidden_feat, num_heads=num_heads, ln=ln)
 
         # classifier
         self.classifier = nn.Linear(in_features=hidden_feat, out_features=n_classes)
 
         initialize_weights(self)
-        print(f"ilra2~")
 
     def forward(self, x):
         for block in self.gab_blocks:
@@ -136,7 +142,7 @@ class ILRA(nn.Module):
 
 
 if __name__ == "__main__":
-    model = ILRA(feat_dim=1024, n_classes=2, hidden_feat=256, num_heads=8, topk=1)
+    model = ILRA(feat_dim=1024, n_classes=2, hidden_feat=256, num_heads=8, topk=4)
     num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print(f"num of params: {num_params}")
 
