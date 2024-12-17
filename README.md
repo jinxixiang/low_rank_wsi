@@ -48,7 +48,7 @@ Prepare your WSI feature with [CLAM](https://github.com/mahmoodlab/CLAM) and cha
 To run this example code, you can download the CAMELYON16 features using ImageNet pre-trained Resnet50 from this [link](https://drive.google.com/file/d/1fJ_weyjPcpLEEVpQPwjFnZCWy_47VcRY/view?usp=sharing).
 
 ### Step 2
-change _line 26_ in __train_mil.py__ to run different experiments.
+change _line 42_ in __train_mil.py__ to run different experiments.
 ```python
 fname = "config_ilra_camelyon16_imagenet"
 ```
