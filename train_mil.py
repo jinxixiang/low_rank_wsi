@@ -5,6 +5,9 @@ from wsi_dataset import WSIDataModule
 import yaml
 import importlib
 from models import MILModel
+import random
+import numpy as np
+import os
 
 
 def read_yaml(fpath):
@@ -21,9 +24,22 @@ def get_obj_from_str(string, reload=False):
     return getattr(importlib.import_module(module, package=None), cls)
 
 
+# seed everything
+def fix_seed(seed):
+    random.seed(seed)
+    os.environ["PYTHONHASHSEED"] = str(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    # torch.set_deterministic(True)  # torch < 1.8
+    torch.use_deterministic_algorithms(True, warn_only=True)  # torch >= 1.8
+
+
 if __name__ == "__main__":
     # Configs
-    fname = "config_clam_camelyon16_imagenet"
+    fname = "config_ilra_camelyon16_imagenet"
     config_yaml = read_yaml(f"./configs/{fname}.yaml")
     for key, value in config_yaml.items():
         print(f"{key.ljust(30)}: {value}")
@@ -31,6 +47,7 @@ if __name__ == "__main__":
     # run in ddp mode if num_gpus > 1
     num_gpus = 1
     dist = num_gpus > 1
+    fix_seed(7890)
 
     # create datamodule
     dm = WSIDataModule(config_yaml, split_k=0, dist=dist)  # split_k = [0,1,...9] for 10-fold cross-validation split
